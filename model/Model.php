@@ -89,7 +89,14 @@ public function getPaginationCourseData($start_from, $no_of_records_per_page)
         $result = mysqli_query($this->conn->connect(), $sql);
     }
 
-   
+   public function addClientDetail($clientDetail)
+   {
+       
+        $sql = "INSERT INTO client (client-name, client-email, company-detail, contact-number)VALUES('$clientDetail[0]', '$clientDetail[1]', '$clientDetail[2]', '$clientDetail[3]')";
+        
+     mysqli_query($this->conn->connect(), $sql);
+     
+   }
 
 }
 

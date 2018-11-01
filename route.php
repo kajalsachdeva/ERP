@@ -49,7 +49,7 @@ class Route {
         
 //        echo '<pre>';
 //        print_r($this->expload_url);die;
-        $this->expload_url = array_slice($this->expload_url, 3);
+        $this->expload_url = array_slice($this->expload_url, 2);
 
 //        echo '<pre>';
 //        print_r($this->expload_url);exit;

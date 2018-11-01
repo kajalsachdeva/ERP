@@ -72,6 +72,20 @@
                             <li><a href="<?php echo BASE_URL . 'Course/addCourse' ?>"><i class="fa fa-circle-o"></i> Add</a></li>
                         </ul>
                     </li>
+                     <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-files-o"></i>
+                            <span>Projects</span>
+                            <span class="pull-right-container">
+                                 <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            
+                            <li><a href="<?php echo BASE_URL . 'Project/addProject' ?>"><i class="fa fa-circle-o"></i>Add Project</a></li>
+                            <li><a href="<?php echo BASE_URL . 'Client/addClient' ?>"><i class="fa fa-circle-o"></i> Add Client</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
             <!-- /.sidebar -->
