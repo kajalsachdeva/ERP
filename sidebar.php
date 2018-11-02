@@ -32,12 +32,12 @@
             <section class="sidebar">
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
-                    <div class="pull-left image">
+<!--                    <div class="pull-left image">
                         <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                    </div>
+                    </div>-->
                     <div class="pull-left info">
-                        <p><?php echo($_SESSION['result']['fullname']); ?></p>
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <?php // echo($_SESSION['result']['fullname']); ?>
+                        <!--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
                     </div>
                 </div>
                 <!-- search form -->
@@ -83,7 +83,7 @@
                         <ul class="treeview-menu">
                             
                             <li><a href="<?php echo BASE_URL . 'Project/addProject' ?>"><i class="fa fa-circle-o"></i>Add Project</a></li>
-                            <li><a href="<?php echo BASE_URL . 'Client/addClient' ?>"><i class="fa fa-circle-o"></i> Add Client</a></li>
+                            <!--<li><a href="<?php // echo BASE_URL . 'Client/addClient' ?>"><i class="fa fa-circle-o"></i> Add Client</a></li>-->
                         </ul>
                     </li>
                 </ul>
