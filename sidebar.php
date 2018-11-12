@@ -83,7 +83,7 @@
                         <ul class="treeview-menu">
                             
                             <li><a href="<?php echo BASE_URL . 'Project/addProject' ?>"><i class="fa fa-circle-o"></i>Add Project</a></li>
-                            <!--<li><a href="<?php // echo BASE_URL . 'Client/addClient' ?>"><i class="fa fa-circle-o"></i> Add Client</a></li>-->
+                            <li><a href="<?php echo BASE_URL . 'Project/viewProject' ?>"><i class="fa fa-circle-o"></i> View Projects</a></li>
                         </ul>
                     </li>
                 </ul>

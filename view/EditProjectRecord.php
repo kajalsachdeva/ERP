@@ -25,7 +25,7 @@ include 'header.php';
                     <!-- SELECT2 EXAMPLE -->
                     <div class="box box-default">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Add Project</h3> 
+                            <h3 class="box-title">Edit Project</h3> 
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -33,30 +33,30 @@ include 'header.php';
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Project ID</label>
-                                        <input type="text" class="form-control my-colorpicker1" name="project_id">
+                                        <input type="text" class="form-control my-colorpicker1" name="project_id" value="<?php echo $data['projectData']['project_id']; ?>">
 
                                     </div>
 
                                     <!-- /.form-group -->
                                     <div class="form-group">
                                         <label>Project Approach</label>
-                                        <select class="form-control select2"  style="width: 100%;" name="project_approach">
-                                            <option>Waterfall</option>
-                                            <option>Agile</option>
+                                        <select class="form-control select2"  style="width: 100%;" name="project_approach" >
+                                            <option value="Waterfall" <?php echo ($data['projectData']['project_approach'] == 'Waterfall') ? 'selected' : '' ?>>Waterfall</option>
+                                            <option value="Agile" <?php echo ($data['projectData']['project_approach'] == 'Agile') ? 'selected' : '' ?>>Agile</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Plan Status</label>
                                         <select class="form-control select2"  style="width: 100%;" name="plan_status">
-                                            <option>Approved</option>
-                                            <option>Unapproved</option>
+                                            <option value="Approved" <?php echo ($data['projectData']['plan_status'] == 'Approved') ? 'selected' : '' ?>>Approved</option>
+                                            <option value="Unapproved" <?php echo ($data['projectData']['plan_status'] == 'Unapproved') ? 'selected' : '' ?>>Unapproved</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Team Lead</label>
                                         <select class="form-control select2"  style="width: 100%;" name="team_lead">
-                                            <option>Divya</option>
-                                            <option>Arif</option>
+                                            <option value="Divya" <?php echo ($data['projectData']['team_lead'] == 'Divya') ? 'selected' : '' ?>>Divya</option>
+                                            <option value="Arif" <?php echo ($data['projectData']['team_lead'] == 'Arif') ? 'selected' : '' ?>>Arif</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -66,7 +66,7 @@ include 'header.php';
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="startdatepicker" name="start_date">
+                                            <input type="text" class="form-control pull-right" id="startdatepicker" name="start_date" value="<?php echo $data['projectData']['start_date']; ?>">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -75,15 +75,15 @@ include 'header.php';
 
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="project_description"></textarea>
+                                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="project_                                                description"><?php echo $data['projectData']['project_description']; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Project Quality</label>
                                         <select class="form-control select2" style="width: 100%;" name="project_quality">
-                                            <option>Good</option>
-                                            <option>Average</option>
-                                            <option>Poor</option>
-                                            <option>Very poor</option>
+                                            <option value="Good" <?php echo ($data['projectData']['project_quality'] == 'Good') ? 'selected' : '' ?>>Good</option>
+                                            <option value="Average" <?php echo ($data['projectData']['project_quality'] == 'Average') ? '                                                  selected' : '' ?>>Average</option>
+                                            <option value="Poor" <?php echo ($data['projectData']['project_quality'] == 'Poor') ? 'selected' : '' ?>>Poor</option>
+                                            <option value="Very poor" <?php echo ($data['projectData']['project_quality'] == 'Very poor') ? 'selected' : '' ?>>Very poor</option>
 
                                         </select>
 
@@ -92,11 +92,11 @@ include 'header.php';
                                     <div class="form-group">
                                         <label>Project Status</label>
                                         <select class="form-control select2" style="width: 100%;" name="project_status">
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                            <option>Delivered</option>
-                                            <option>Hold</option>
-                                            <option>Closed</option>
+                                            <option value="Active" <?php echo ($data['projectData']['project_status'] == 'Active') ? '                                                     selected' : '' ?>>Active</option>
+                                            <option value="Inactive" <?php echo ($data['projectData']['project_status'] == 'Inactive') ? '                                                 selected' : '' ?>>Inactive</option>
+                                            <option value="Delivered" <?php echo ($data['projectData']['project_status'] == 'Delivered') ? '                                               selected' : '' ?>>Delivered</option>
+                                            <option value="Hold" <?php echo ($data['projectData']['project_status'] == 'Hold') ? 'selected' : '' ?>>Hold</option>
+                                            <option value="Closed" <?php echo ($data['projectData']['project_status'] == 'Closed') ? '                                                     selected' : '' ?>>Closed</option>
 
                                         </select>
 
@@ -108,42 +108,41 @@ include 'header.php';
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Project Name</label>
-                                        <input type="text" class="form-control my-colorpicker1" name="project_name">
+                                        <input type="text" class="form-control my-colorpicker1" name="project_name" value="<?php echo $data['projectData']['project_name']; ?>">
                                     </div>
                                     <!-- /.form-group -->
                                     <div class="form-group">
                                         <label>Client Name</label>
-                                        <select class="form-control select2" style="width: 100%;" name="client_name">
+                                        <select class="form-control select2" style="width: 100%;" name="client_name" >
                                             <?php
-                                            foreach ($data as $result => $clientData) {
-//                                                echo $result;
-//                                                die;
-                                                if ($result == 'clientData') {
-                                                    foreach ($clientData as $clientDEscription) {
-//                                                    echo '<pre>';
-//                                                    print_r($clientData);
-//                                                    die;
-                                                        echo '<option value="' . $clientDEscription[0] . '">' . $clientDEscription[1] . '</option>';
-                                                    }
-                                                }
-                                            }
-                                            ?>
+                                           foreach ($data as $result => $clientData) {
+                                               if ($result == 'clientData') {
+                                                   foreach ($clientData as $clientDescription) {
+                                                       ?>
+                                                  
+<option value="<?php echo $clientDescription[0]?>" <?php echo ($data['projectData']['client_id'] == $clientDescription[0]) ? 'selected' : '' ?>><?php echo $clientDescription[1]?></option>
+                                                   <?php   }
+                                                    
+                                                   }
+                                               }
+                                           
+                                           ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Project flag</label>
                                         <select class="form-control select2" style="width: 100%;" name="project_flag">
-                                            <option selected="selected">Smooth Ride</option>
-                                            <option>Danger Zone</option>
-                                            <option>Critical Zone</option>
+                                            <option value="Smooth Ride" <?php echo ($data['projectData']['project_flag'] == 'Smooth Ride') ? '                                               selected' : '' ?>>Smooth Ride</option>
+                                            <option value="Danger Zone" <?php echo ($data['projectData']['project_flag'] == 'Danger Zone') ? '                                               selected' : '' ?>>Danger Zone</option>
+                                            <option value="Critical Zone" <?php echo ($data['projectData']['project_flag'] == 'Critical Zone') ? '                                               selected' : '' ?>>Critical Zone</option>
 
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Project Manager</label>
                                         <select class="form-control select2" style="width: 100%;" name="project_manager">
-                                            <option selected="selected">Divya</option>
-                                            <option>Rahul</option>
+                                            <option value="Divya" <?php echo ($data['projectData']['project_manager'] == 'Divya') ? 'selected' : '' ?>>Divya</option>
+                                            <option value="Rahul" <?php echo ($data['projectData']['project_manager'] == 'Rahul') ? 'selected' : '' ?>>Rahul</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -153,33 +152,31 @@ include 'header.php';
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="enddatepicker" name="end_date">
+                                            <input type="text" class="form-control pull-right" id="enddatepicker" name="end_                                                date" value="<?php echo $data['projectData']['end_date']; ?>">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
                                     <div class="form-group">
                                         <label>Technology</label>
-                                        <select class="form-control select2" style="width: 100%;" id='multiselect' name= "technology[]" multiple="multiple">
-<?php
-foreach ($data as $result => $techData) {
+                                        <select class="form-control select2" style="width: 100%;" id='multiselect' name= "                                              technology[]" multiple="multiple">
+                                            <?php
+                                            foreach ($data as $result => $techData) {
 //                                                echo $result;
 //                                                die;
-    if ($result == 'techData') {
-        foreach ($techData as $techLanguage) {
-//                                                    echo '<pre>';
-//                                                    print_r($clientData);
-//                                                    die;
-            echo '<option value="' . $techLanguage[0] . '">' . $techLanguage[1] . '</option>';
-        }
-    }
-}
-?>
+                                                if ($result == 'techData') {
+                                                    foreach ($techData as $techLanguage) {?>
+                                                   
+<option value="<?php echo $techLanguage[0]?>" <?php echo ($data['projectData']['technology_id'] == $techLanguage[0]) ? 'selected' : '' ?>><?php echo $techLanguage[1]?></option>
+                                               <?php     }
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Estimated Hours</label>
-                                        <input type="text" class="form-control my-colorpicker1" name="estimated_hours">
+                                        <input type="text" class="form-control my-colorpicker1" name="estimated_hours" value="<?php echo $data['projectData']['estimated_hours']; ?>" >
 
                                     </div>
                                     <div class="box-footer">

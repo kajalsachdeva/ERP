@@ -42,11 +42,51 @@ class Model extends dbconnect {
 
     public function addProjectDeatil($addProjectDetails) {
 
-        $sql = "INSERT INTO project (project_id, project_name, project_approach, plan_status, project_flag, team_lead, project_manager, start_date,end_date, project_quality, project_description, estimated_hours, client_id, technology_id )"
-                . "VALUES('$addProjectDetails[0]', '$addProjectDetails[1]', '$addProjectDetails[2]', '$addProjectDetails[3]', '$addProjectDetails[4]', '$addProjectDetails[5]', '$addProjectDetails[6]', '$addProjectDetails[7]', '$addProjectDetails[8]', '$addProjectDetails[9]', '$addProjectDetails[10]', '$addProjectDetails[11]', '$addProjectDetails[12]', '$addProjectDetails[13]')";
-       
-        
+        $sql = "INSERT INTO project (project_id, project_name, project_approach, plan_status, project_flag, team_lead, project_manager, start_date,end_date, project_quality, project_description, estimated_hours, project_status,  client_id, technology_id )"
+                . "VALUES('$addProjectDetails[0]', '$addProjectDetails[1]', '$addProjectDetails[2]', '$addProjectDetails[3]', '$addProjectDetails[4]', '$addProjectDetails[5]', '$addProjectDetails[6]', '" . date('Y-m-d', strtotime($addProjectDetails[7])) . "', '" . date('Y-m-d', strtotime($addProjectDetails[8])) . "', '$addProjectDetails[9]', '$addProjectDetails[10]', '$addProjectDetails[11]', '$addProjectDetails[12]', '$addProjectDetails[13]', '$addProjectDetails[14]' )";
+
         mysqli_query($this->conn->connect(), $sql);
+    }
+
+    public function viewProjects() {
+
+
+        $sql = "SELECT A.`project_id`, A.`project_name`, A.`team_lead`, B.`client_name`, A.`project_manager`, A.`plan_status`, A.`project_flag`, A.`project_quality`,  A.`project_status` 
+                FROM `project`AS A
+                INNER JOIN `client` AS B
+                ON B.`client_id` = A.`client_id` 
+                ";
+        $result = mysqli_query($this->conn->connect(), $sql);
+        $projectData = mysqli_fetch_all($result);
+        return $projectData;
+    }
+
+    public function deleteProjectRecord($projectId) {
+        $sql = "DELETE FROM project WHERE project_id = $projectId ";
+        mysqli_query($this->conn->connect(), $sql);
+    }
+
+    public function editProjectRecord($projectId) {
+        $sql = "select * from project where project_id = $projectId  ";
+        $result = mysqli_query($this->conn->connect(), $sql);
+        $project_record = mysqli_fetch_array($result);
+//        echo '<pre>';
+//        print_r($project_record);
+//        die;
+        return $project_record;
+    }
+
+    public function viewProjectDetail($projectId) {
+
+        $sql = "SELECT pro.project_name,pro.project_approach, (SELECT GROUP_CONCAT(tech.tech_name) AS technologies FROM technology as tech WHERE FIND_IN_SET(tech.tech_id, pro.technology_id)) AS `technologies` , pro.team_lead, customer.client_name, customer.client_email, customer.company_detail, customer.contact_number, pro.estimated_hours
+
+        FROM `project` as pro 
+        INNER JOIN `client` AS customer
+        ON customer.`client_id` = pro.`client_id`
+        where pro.project_id = $projectId";
+        $result = mysqli_query($this->conn->connect(), $sql);
+        $project_record_description = mysqli_fetch_array($result);
+        return $project_record_description;
     }
 
     public function getRegiter($values) {
