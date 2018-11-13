@@ -209,11 +209,16 @@ foreach ($data as $result => $techData) {
 <script>
     $(function () {
         $('#startdatepicker').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+            
         });
         $('#enddatepicker').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
+            
         });
+        
         $('#multiselect').fastselect();
     });
 </script>

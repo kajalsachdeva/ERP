@@ -9,21 +9,18 @@ class Project extends Controller {
         $this->model = new Model();
     }
 
-    public function addProject() 
-    {
+    public function addProject() {
         $clientData = $this->model->getClientData();
         $techData = $this->model->getTechnologyData();
-        if (isset($_POST['submit'])) 
-            {
+        if (isset($_POST['submit'])) {
 
-                 $project_technology = $_POST['technology'];
-                 $project_technologies = "";
-                foreach ($_POST["technology"] as $project_technology) 
-                {
+            $project_technology = $_POST['technology'];
+            $project_technologies = "";
+            foreach ($_POST["technology"] as $project_technology) {
 
-                    $technologies[] = $project_technology;
-                    $project_technologies = implode(',', $technologies);
-                }
+                $technologies[] = $project_technology;
+                $project_technologies = implode(',', $technologies);
+            }
 
             $addProjectDetail = array($_POST['project_id'], $_POST['project_name'], $_POST['project_approach'], $_POST['plan_status'],
                 $_POST['project_flag'], $_POST['team_lead'], $_POST['project_manager'], $_POST['start_date'], $_POST['end_date'],
@@ -45,37 +42,54 @@ class Project extends Controller {
 
             $this->model->addProjectDeatil($addProjectDetail);
             $this->render('view/AddProject.php', array('clientData' => $clientData, 'techData' => $techData));
-        } 
-        else 
-            {
+        } else {
             $this->render('view/AddProject.php', array('clientData' => $clientData, 'techData' => $techData));
-             }
+        }
     }
 
-    public function viewProject()
-    {
+    public function viewProject() {
         $viewAllProjects = $this->model->viewProjects();
         $this->render('view/viewProjects.php', $viewAllProjects);
     }
 
-    public function deleteProjectRecord() 
-    {
+    public function deleteProjectRecord() {
         $projectId = $_GET['Id'];
         $this->model->deleteProjectRecord($projectId);
         $this->redirect('Project/viewProject');
     }
-    public function editProject()
-    {
+
+    public function editProject() {
         $projectId = $_GET['Id'];
+//        echo $projectId;
+//    die;
         $projectData = $this->model->editProjectRecord($projectId);
         $clientData = $this->model->getClientData();
         $techData = $this->model->getTechnologyData();
-        $this->render('view/EditProjectRecord.php', array('projectData' => $projectData , 'clientData' => $clientData, 'techData' => $techData) );
+        $this->render('view/EditProjectRecord.php', array('projectData' => $projectData, 'clientData' => $clientData, 'techData' => $techData));
+
+
+        if (isset($_POST['submit'])) {
+           $project_technology = $_POST['technology'];
+            $project_technologies = "";
+            foreach ($_POST["technology"] as $project_technology) {
+
+                $technologies[] = $project_technology;
+                $project_technologies = implode(',', $technologies);
+            }
+
+            $addProjectDetail = array($_POST['project_id'], $_POST['project_name'], $_POST['project_approach'],
+                $_POST['plan_status'], $_POST['project_flag'], $_POST['team_lead'], $_POST['project_manager'], 
+                $_POST['start_date'],  $_POST['end_date'], $_POST['project_quality'], $_POST['project_description'], 
+                $_POST['estimated_hours'], $_POST['project_status'], $_POST['client_name'], $project_technologies);
+          
+            $this->model->updateProjectData($addProjectDetail, $projectId);
+        }
     }
-public function viewProjectDescription()
-{
-    $projectId = $_GET['Id'];
-    $projectData = $this->model->viewProjectDetail($projectId);
-    $this->render('view/ProjectDescription.php', $projectData);
-}
+
+    public function viewProjectDescription() {
+        $projectId = $_GET['Id'];
+        $projectData = $this->model->viewProjectDetail($projectId);
+        $this->render('view/ProjectDescription.php', $projectData);
+    }
+
 }

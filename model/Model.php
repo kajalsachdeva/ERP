@@ -70,9 +70,6 @@ class Model extends dbconnect {
         $sql = "select * from project where project_id = $projectId  ";
         $result = mysqli_query($this->conn->connect(), $sql);
         $project_record = mysqli_fetch_array($result);
-//        echo '<pre>';
-//        print_r($project_record);
-//        die;
         return $project_record;
     }
 
@@ -88,7 +85,21 @@ class Model extends dbconnect {
         $project_record_description = mysqli_fetch_array($result);
         return $project_record_description;
     }
-
+public function updateProjectData($updatedProjectDetail, $projectId)
+{
+   $sql = "UPDATE project SET 	project_id = '$updatedProjectDetail[0]', project_name = '$updatedProjectDetail[1]', "
+           . "project_approach = '$updatedProjectDetail[2]', plan_status = '$updatedProjectDetail[3]', "
+           . "project_flag = '$updatedProjectDetail[4]', team_lead = '$updatedProjectDetail[5]', "
+           . "project_manager = '$updatedProjectDetail[6]', start_date = $updatedProjectDetail[7], "
+           . "end_date = '$updatedProjectDetail[8]', project_quality = '$updatedProjectDetail[9]', "
+           . "project_description = '$updatedProjectDetail[10]', estimated_hours = $updatedProjectDetail[11], "
+           . "project_status = '$updatedProjectDetail[12]', client_id = '$updatedProjectDetail[13]', "
+           . "technology_id = '$updatedProjectDetail[14]'" 
+          
+           . "where project_id ='$projectId'";
+   
+        $result = mysqli_query($this->conn->connect(), $sql);
+}
     public function getRegiter($values) {
         $sql = "INSERT INTO users (fullname, email, password)VALUES('$values[0]', '$values[1]', '$values[2]')";
         mysqli_query($this->conn->connect(), $sql);

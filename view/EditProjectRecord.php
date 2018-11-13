@@ -12,7 +12,7 @@ include 'header.php';
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <form action="<?php echo BASE_URL . 'Project/addProject' ?>" method="post">
+        <form action="<?php echo BASE_URL . 'Project/editProject' . '?' . 'Id=' . $data['projectData'][0]; ?>" method="post">
             <div class="content-wrapper">
     <!--            <section class="content-header">
                     <h3>
@@ -66,7 +66,8 @@ include 'header.php';
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="startdatepicker" name="start_date" value="<?php echo $data['projectData']['start_date']; ?>">
+                                            <input type="text" class="form-control pull-right" id="startdatepicker" name="start_date" 
+                                                   value="<?php echo $data['projectData']['start_date']; ?>">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -75,7 +76,7 @@ include 'header.php';
 
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="project_                                                description"><?php echo $data['projectData']['project_description']; ?></textarea>
+<textarea class="form-control" rows="3" name="project_description"><?php echo $data['projectData']['project_description']; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Project Quality</label>
@@ -115,18 +116,18 @@ include 'header.php';
                                         <label>Client Name</label>
                                         <select class="form-control select2" style="width: 100%;" name="client_name" >
                                             <?php
-                                           foreach ($data as $result => $clientData) {
-                                               if ($result == 'clientData') {
-                                                   foreach ($clientData as $clientDescription) {
-                                                       ?>
-                                                  
-<option value="<?php echo $clientDescription[0]?>" <?php echo ($data['projectData']['client_id'] == $clientDescription[0]) ? 'selected' : '' ?>><?php echo $clientDescription[1]?></option>
-                                                   <?php   }
-                                                    
-                                                   }
-                                               }
-                                           
-                                           ?>
+                                            foreach ($data as $result => $clientData) {
+                                                if ($result == 'clientData') {
+
+                                                    foreach ($clientData as $clientDescription) {
+                                                        ?>
+
+                                                        <option value="<?php echo $clientDescription[0] ?>" <?php echo ($data['projectData']['client_id'] == $clientDescription[0]) ? 'selected' : '' ?>><?php echo $clientDescription[1] ?></option>
+                                                    <?php
+                                                    }
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -152,22 +153,26 @@ include 'header.php';
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="enddatepicker" name="end_                                                date" value="<?php echo $data['projectData']['end_date']; ?>">
+                                            <input type="text" class="form-control pull-right" id="enddatepicker" 
+                                                   name="end_date" value="<?php echo $data['projectData']['end_date']; ?>">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
                                     <div class="form-group">
                                         <label>Technology</label>
                                         <select class="form-control select2" style="width: 100%;" id='multiselect' name= "                                              technology[]" multiple="multiple">
-                                            <?php
-                                            foreach ($data as $result => $techData) {
-//                                                echo $result;
-//                                                die;
-                                                if ($result == 'techData') {
-                                                    foreach ($techData as $techLanguage) {?>
-                                                   
-<option value="<?php echo $techLanguage[0]?>" <?php echo ($data['projectData']['technology_id'] == $techLanguage[0]) ? 'selected' : '' ?>><?php echo $techLanguage[1]?></option>
-                                               <?php     }
+<?php
+foreach ($data as $result => $techData) {
+
+    if ($result == 'techData') {
+        $technology_id = explode(",", $data['projectData']['technology_id']);
+
+        foreach ($techData as $techLanguage) {
+            ?>
+                                                        <option <?= in_array($techLanguage[0], $technology_id) ? 'selected' : '' ?> value="<?php echo $techLanguage[0] ?>"><?php echo $techLanguage[1] ?></option>
+
+                                                    <?php
+                                                    }
                                                 }
                                             }
                                             ?>
@@ -206,10 +211,12 @@ include 'header.php';
 <script>
     $(function () {
         $('#startdatepicker').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         });
         $('#enddatepicker').datepicker({
-            autoclose: true
+            autoclose: true,
+            format: 'yyyy-mm-dd'
         });
         $('#multiselect').fastselect();
     });

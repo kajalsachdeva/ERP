@@ -59,7 +59,8 @@ include 'header.php';
                                                         <td><?php echo $project_list[6] ?></td>
                                                         <td><?php echo $project_list[7] ?></td>
                                                         <td><?php echo $project_list[8] ?></td>
-                                                        <td><a href="<?php echo BASE_URL . 'Project/editProject' . '?' . 'Id=' . $project_list[0]; 
+                                                        <td><a href="<?php echo BASE_URL . 'Project/editProject' .
+                                                                '?' . 'Id=' . $project_list[0]; 
                                                          ?>">Edit</a></td>
                                                         <td><a href="javascript:delete_project_record(<?php echo $project_list[0] ?>)">Delete</a></td>
                                                     </tr>
