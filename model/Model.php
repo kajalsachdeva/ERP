@@ -54,7 +54,7 @@ class Model extends dbconnect {
         $sql = "SELECT A.`project_id`, A.`project_name`, A.`team_lead`, B.`client_name`, A.`project_manager`, A.`plan_status`, A.`project_flag`, A.`project_quality`,  A.`project_status` 
                 FROM `project`AS A
                 INNER JOIN `client` AS B
-                ON B.`client_id` = A.`client_id` 
+                ON B.`client_id` = A.`client_id` ORDER BY project_id DESC
                 ";
         $result = mysqli_query($this->conn->connect(), $sql);
         $projectData = mysqli_fetch_all($result);

@@ -12,7 +12,7 @@ include 'header.php';
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <form action="<?php echo BASE_URL . 'Project/editProject' . '?' . 'Id=' . $data['projectData'][0]; ?>" method="post">
+        <form action="<?php echo BASE_URL . 'Project/editProject' . '?' . 'Id=' . $data['projectData'][1]; ?>" method="post">
             <div class="content-wrapper">
     <!--            <section class="content-header">
                     <h3>
