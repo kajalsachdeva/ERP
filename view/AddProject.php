@@ -12,7 +12,7 @@ include 'header.php';
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <form action="<?php echo BASE_URL . 'Project/addProject' ?>" method="post">
+        <form action="<?php echo BASE_URL . 'Project/addProject' ?>" method="post" name="form" id="form">
             <div class="content-wrapper">
     <!--            <section class="content-header">
                     <h3>
@@ -33,30 +33,34 @@ include 'header.php';
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Project ID</label>
-                                        <input type="text" class="form-control my-colorpicker1" name="project_id">
+                                        <input type="text" class="form-control my-colorpicker1" name="project_id" id ="project_id">
+                                            <?php echo $error_msg; ?>
 
                                     </div>
 
                                     <!-- /.form-group -->
                                     <div class="form-group">
                                         <label>Project Approach</label>
-                                        <select class="form-control select2"  style="width: 100%;" name="project_approach">
-                                            <option>Waterfall</option>
-                                            <option>Agile</option>
+                                        <select class="form-control select2"  style="width: 100%;" name="project_approach" id="project_approach">
+                                            <option value="">--Select project approach--</option>
+                                            <option value="Waterfall">Waterfall</option>
+                                            <option value="Agile">Agile</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Plan Status</label>
-                                        <select class="form-control select2"  style="width: 100%;" name="plan_status">
-                                            <option>Approved</option>
-                                            <option>Unapproved</option>
+                                        <select class="form-control select2"  style="width: 100%;" name="plan_status" id="plan_status">
+                                            <option value="">--Please select plan status--</option>
+                                            <option value="Approved">Approved</option>
+                                            <option value="Unapproved">Unapproved</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Team Lead</label>
-                                        <select class="form-control select2"  style="width: 100%;" name="team_lead">
-                                            <option>Divya</option>
-                                            <option>Arif</option>
+                                        <select class="form-control select2"  style="width: 100%;" name="team_lead" id="team_lead">
+                                            <option value="">--Select team lead--</option>
+                                            <option value="Divya">Divya</option>
+                                            <option value="Arif">Arif</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -75,15 +79,16 @@ include 'header.php';
 
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="project_description"></textarea>
+                                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="project_description" id="project_description"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Project Quality</label>
-                                        <select class="form-control select2" style="width: 100%;" name="project_quality">
-                                            <option>Good</option>
-                                            <option>Average</option>
-                                            <option>Poor</option>
-                                            <option>Very poor</option>
+                                        <select class="form-control select2" style="width: 100%;" name="project_quality" id="project_quality">
+                                            <option value="">--Select project quality--</option>
+                                            <option value="Good">Good</option>
+                                            <option value="Average">Average</option>
+                                            <option value="Poor">Poor</option>
+                                            <option value="Very poor">Very poor</option>
 
                                         </select>
 
@@ -91,12 +96,13 @@ include 'header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Project Status</label>
-                                        <select class="form-control select2" style="width: 100%;" name="project_status">
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                            <option>Delivered</option>
-                                            <option>Hold</option>
-                                            <option>Closed</option>
+                                        <select class="form-control select2" style="width: 100%;" name="project_status" id="project_status">
+                                            <option value="">--select project status</option>
+                                            <option value="Active">Active</option>
+                                            <option value="Inactive">Inactive</option>
+                                            <option value="Delivered">Delivered</option>
+                                            <option value="Hold">Hold</option>
+                                            <option value="Closed">Closed</option>
 
                                         </select>
 
@@ -108,21 +114,24 @@ include 'header.php';
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Project Name</label>
-                                        <input type="text" class="form-control my-colorpicker1" name="project_name">
+                                        <input type="text" class="form-control my-colorpicker1" name="project_name" id="project_name">
                                     </div>
                                     <!-- /.form-group -->
                                     <div class="form-group">
                                         <label>Client Name</label>
                                         <select class="form-control select2" style="width: 100%;" name="client_name">
+
                                             <?php
                                             foreach ($data as $result => $clientData) {
 //                                                echo $result;
 //                                                die;
                                                 if ($result == 'clientData') {
+                                                    echo '<option value="">' . "Select Client Name" . '</option>';
                                                     foreach ($clientData as $clientDEscription) {
 //                                                    echo '<pre>';
 //                                                    print_r($clientData);
 //                                                    die;
+
                                                         echo '<option value="' . $clientDEscription[0] . '">' . $clientDEscription[1] . '</option>';
                                                     }
                                                 }
@@ -133,17 +142,18 @@ include 'header.php';
                                     <div class="form-group">
                                         <label>Project flag</label>
                                         <select class="form-control select2" style="width: 100%;" name="project_flag">
-                                            <option selected="selected">Smooth Ride</option>
-                                            <option>Danger Zone</option>
-                                            <option>Critical Zone</option>
+                                            <option value="Smooth Ride">Smooth Ride</option>
+                                            <option value="Danger Zone">Danger Zone</option>
+                                            <option value="Critical Zone">Critical Zone</option>
 
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Project Manager</label>
                                         <select class="form-control select2" style="width: 100%;" name="project_manager">
-                                            <option selected="selected">Divya</option>
-                                            <option>Rahul</option>
+                                            <option value="">--Select project manager--</option>
+                                            <option value="Divya">Divya</option>
+                                            <option value="Rahul">Rahul</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -159,21 +169,19 @@ include 'header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Technology</label>
-                                        <select class="form-control select2" style="width: 100%;" id='multiselect' name= "technology[]" multiple="multiple">
-<?php
-foreach ($data as $result => $techData) {
-//                                                echo $result;
-//                                                die;
-    if ($result == 'techData') {
-        foreach ($techData as $techLanguage) {
-//                                                    echo '<pre>';
-//                                                    print_r($clientData);
-//                                                    die;
-            echo '<option value="' . $techLanguage[0] . '">' . $techLanguage[1] . '</option>';
-        }
-    }
-}
-?>
+                                        <select class="form-control select2" style="width: 100%;" id='multiselect' name= "technology[]" multiple="multiple" required="required">
+                                            <?php
+                                            foreach ($data as $result => $techData) {
+
+                                                if ($result == 'techData') {
+
+                                                    foreach ($techData as $techLanguage) {
+
+                                                        echo '<option value="' . $techLanguage[0] . '">' . $techLanguage[1] . '</option>';
+                                                    }
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
 
@@ -211,17 +219,18 @@ foreach ($data as $result => $techData) {
         $('#startdatepicker').datepicker({
             autoclose: true,
             format: 'yyyy-mm-dd'
-            
+
         });
         $('#enddatepicker').datepicker({
             autoclose: true,
             format: 'yyyy-mm-dd'
-            
+
         });
-        
-        $('#multiselect').fastselect();
+
+
     });
 </script>
+
 
 
 

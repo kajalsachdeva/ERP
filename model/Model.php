@@ -45,16 +45,17 @@ class Model extends dbconnect {
         $sql = "INSERT INTO project (project_id, project_name, project_approach, plan_status, project_flag, team_lead, project_manager, start_date,end_date, project_quality, project_description, estimated_hours, project_status,  client_id, technology_id )"
                 . "VALUES('$addProjectDetails[0]', '$addProjectDetails[1]', '$addProjectDetails[2]', '$addProjectDetails[3]', '$addProjectDetails[4]', '$addProjectDetails[5]', '$addProjectDetails[6]', '" . date('Y-m-d', strtotime($addProjectDetails[7])) . "', '" . date('Y-m-d', strtotime($addProjectDetails[8])) . "', '$addProjectDetails[9]', '$addProjectDetails[10]', '$addProjectDetails[11]', '$addProjectDetails[12]', '$addProjectDetails[13]', '$addProjectDetails[14]' )";
 
+        
         mysqli_query($this->conn->connect(), $sql);
     }
 
     public function viewProjects() {
 
 
-        $sql = "SELECT A.`project_id`, A.`project_name`, A.`team_lead`, B.`client_name`, A.`project_manager`, A.`plan_status`, A.`project_flag`, A.`project_quality`,  A.`project_status` 
-                FROM `project`AS A
-                INNER JOIN `client` AS B
-                ON B.`client_id` = A.`client_id` ORDER BY project_id DESC
+        $sql = "SELECT pro.`Id`, pro.`project_id`, pro.`project_name`, pro.`team_lead`, customer.`client_name`, pro.`project_manager`, pro.`plan_status`, pro.`project_flag`, pro.`project_quality`,  pro.`project_status` 
+                FROM `project`AS pro
+                INNER JOIN `client` AS customer
+                ON customer.`client_id` = pro.`client_id` ORDER BY Id DESC
                 ";
         $result = mysqli_query($this->conn->connect(), $sql);
         $projectData = mysqli_fetch_all($result);
@@ -62,14 +63,17 @@ class Model extends dbconnect {
     }
 
     public function deleteProjectRecord($projectId) {
-        $sql = "DELETE FROM project WHERE project_id = $projectId ";
+        $sql = "DELETE FROM project WHERE Id = $projectId ";
         mysqli_query($this->conn->connect(), $sql);
     }
 
     public function editProjectRecord($projectId) {
-        $sql = "select * from project where project_id = $projectId  ";
+        $sql = "select * from project where Id = $projectId  ";
         $result = mysqli_query($this->conn->connect(), $sql);
         $project_record = mysqli_fetch_array($result);
+//        echo '<pre>';
+//        print_r($project_record);
+//        die;
         return $project_record;
     }
 
@@ -96,7 +100,7 @@ public function updateProjectData($updatedProjectDetail, $projectId)
            . "project_status = '$updatedProjectDetail[12]', client_id = '$updatedProjectDetail[13]', "
            . "technology_id = '$updatedProjectDetail[14]'" 
           
-           . "where project_id ='$projectId'";
+           . "where Id ='$projectId'";
    
         $result = mysqli_query($this->conn->connect(), $sql);
 }

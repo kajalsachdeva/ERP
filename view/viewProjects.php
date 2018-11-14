@@ -50,15 +50,14 @@ include 'header.php';
                                                 <?php foreach ($data as $project_list): ?>
                                                     <tr>
                                                         
-                                                        <td><a href="<?php echo BASE_URL . 'Project/viewProjectDescription' . '?' . 'Id=' . $project_list[0]; 
-                                                        ?>"><?php echo $project_list[1] ?></a></td>
-                                                        <td><?php echo $project_list[2] ?></td>
-                                                        <td> <?php echo $project_list[3] ?></td>
-                                                        <td><?php echo $project_list[4] ?></td>
+                                                        <td><a href="<?php echo BASE_URL . 'Project/viewProjectDescription' . '?' . 'Id=' . $project_list[0]; ?>"><?php echo $project_list[2] ?></a></td>
+                                                        <td><?php echo $project_list[3] ?></td>
+                                                        <td> <?php echo $project_list[4] ?></td>
                                                         <td><?php echo $project_list[5] ?></td>
                                                         <td><?php echo $project_list[6] ?></td>
                                                         <td><?php echo $project_list[7] ?></td>
                                                         <td><?php echo $project_list[8] ?></td>
+                                                        <td><?php echo $project_list[9] ?></td>
                                                         <td><a href="<?php echo BASE_URL . 'Project/editProject' .
                                                                 '?' . 'Id=' . $project_list[0]; 
                                                          ?>">Edit</a></td>

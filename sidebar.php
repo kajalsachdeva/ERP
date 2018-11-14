@@ -130,3 +130,6 @@
                 <!-- AdminLTE for demo purposes -->
                 <script src="../dist/js/demo.js"></script>
                 <script src="../bower_components/JS/Custom.js"></script> 
+              
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>

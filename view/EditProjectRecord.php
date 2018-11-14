@@ -12,7 +12,7 @@ include 'header.php';
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <form action="<?php echo BASE_URL . 'Project/editProject' . '?' . 'Id=' . $data['projectData'][1]; ?>" method="post">
+        <form action="<?php echo BASE_URL . 'Project/editProject' . '?' . 'Id=' . $data['projectData'][0]; ?>" method="post" id="form">
             <div class="content-wrapper">
     <!--            <section class="content-header">
                     <h3>
@@ -40,21 +40,24 @@ include 'header.php';
                                     <!-- /.form-group -->
                                     <div class="form-group">
                                         <label>Project Approach</label>
-                                        <select class="form-control select2"  style="width: 100%;" name="project_approach" >
+                                        <select class="form-control select2"  style="width: 100%;" name="project_approach" id="project_approach" >
+                                            <option value="">--Select project approach--</option>
                                             <option value="Waterfall" <?php echo ($data['projectData']['project_approach'] == 'Waterfall') ? 'selected' : '' ?>>Waterfall</option>
                                             <option value="Agile" <?php echo ($data['projectData']['project_approach'] == 'Agile') ? 'selected' : '' ?>>Agile</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Plan Status</label>
-                                        <select class="form-control select2"  style="width: 100%;" name="plan_status">
+                                        <select class="form-control select2"  style="width: 100%;" name="plan_status" id="plan_status">
+                                            <option value="">--Please select plan status--</option>
                                             <option value="Approved" <?php echo ($data['projectData']['plan_status'] == 'Approved') ? 'selected' : '' ?>>Approved</option>
                                             <option value="Unapproved" <?php echo ($data['projectData']['plan_status'] == 'Unapproved') ? 'selected' : '' ?>>Unapproved</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Team Lead</label>
-                                        <select class="form-control select2"  style="width: 100%;" name="team_lead">
+                                        <select class="form-control select2"  style="width: 100%;" name="team_lead" id="team_lead">
+                                            <option value="">--Select team lead--</option>
                                             <option value="Divya" <?php echo ($data['projectData']['team_lead'] == 'Divya') ? 'selected' : '' ?>>Divya</option>
                                             <option value="Arif" <?php echo ($data['projectData']['team_lead'] == 'Arif') ? 'selected' : '' ?>>Arif</option>
                                         </select>
@@ -76,11 +79,12 @@ include 'header.php';
 
                                     <div class="form-group">
                                         <label>Description</label>
-<textarea class="form-control" rows="3" name="project_description"><?php echo $data['projectData']['project_description']; ?></textarea>
+                                        <textarea class="form-control" rows="3" name="project_description" id="project_description"><?php echo $data['projectData']['project_description']; ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Project Quality</label>
-                                        <select class="form-control select2" style="width: 100%;" name="project_quality">
+                                        <select class="form-control select2" style="width: 100%;" name="project_quality" id="project_quality">
+                                            <option value="">--Select project quality--</option>
                                             <option value="Good" <?php echo ($data['projectData']['project_quality'] == 'Good') ? 'selected' : '' ?>>Good</option>
                                             <option value="Average" <?php echo ($data['projectData']['project_quality'] == 'Average') ? '                                                  selected' : '' ?>>Average</option>
                                             <option value="Poor" <?php echo ($data['projectData']['project_quality'] == 'Poor') ? 'selected' : '' ?>>Poor</option>
@@ -92,7 +96,8 @@ include 'header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Project Status</label>
-                                        <select class="form-control select2" style="width: 100%;" name="project_status">
+                                        <select class="form-control select2" style="width: 100%;" name="project_status" id="project_status">
+                                            <option value="">--select project status</option>
                                             <option value="Active" <?php echo ($data['projectData']['project_status'] == 'Active') ? '                                                     selected' : '' ?>>Active</option>
                                             <option value="Inactive" <?php echo ($data['projectData']['project_status'] == 'Inactive') ? '                                                 selected' : '' ?>>Inactive</option>
                                             <option value="Delivered" <?php echo ($data['projectData']['project_status'] == 'Delivered') ? '                                               selected' : '' ?>>Delivered</option>
@@ -109,7 +114,7 @@ include 'header.php';
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Project Name</label>
-                                        <input type="text" class="form-control my-colorpicker1" name="project_name" value="<?php echo $data['projectData']['project_name']; ?>">
+                                        <input type="text" class="form-control my-colorpicker1" name="project_name" value="<?php echo $data['projectData']['project_name']; ?>" id="project_name">
                                     </div>
                                     <!-- /.form-group -->
                                     <div class="form-group">
@@ -118,12 +123,12 @@ include 'header.php';
                                             <?php
                                             foreach ($data as $result => $clientData) {
                                                 if ($result == 'clientData') {
-
+                                                    echo '<option value="">' . "Select Client Name" . '</option>';
                                                     foreach ($clientData as $clientDescription) {
                                                         ?>
 
                                                         <option value="<?php echo $clientDescription[0] ?>" <?php echo ($data['projectData']['client_id'] == $clientDescription[0]) ? 'selected' : '' ?>><?php echo $clientDescription[1] ?></option>
-                                                    <?php
+                                                        <?php
                                                     }
                                                 }
                                             }
@@ -142,6 +147,7 @@ include 'header.php';
                                     <div class="form-group">
                                         <label>Project Manager</label>
                                         <select class="form-control select2" style="width: 100%;" name="project_manager">
+                                            <option value="">--Select project manager--</option>
                                             <option value="Divya" <?php echo ($data['projectData']['project_manager'] == 'Divya') ? 'selected' : '' ?>>Divya</option>
                                             <option value="Rahul" <?php echo ($data['projectData']['project_manager'] == 'Rahul') ? 'selected' : '' ?>>Rahul</option>
                                         </select>
@@ -160,18 +166,19 @@ include 'header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Technology</label>
-                                        <select class="form-control select2" style="width: 100%;" id='multiselect' name= "                                              technology[]" multiple="multiple">
-<?php
-foreach ($data as $result => $techData) {
+                                        <select class="form-control select2" style="width: 100%;" id='multiselect' name= "                                              technology[]" multiple="multiple" required="required">
+                                            <?php
+                                            foreach ($data as $result => $techData) {
 
-    if ($result == 'techData') {
-        $technology_id = explode(",", $data['projectData']['technology_id']);
+                                                if ($result == 'techData') {
+                                                    //echo '<option value="">' . "Select Project Technology" . '</option>';
+                                                    $technology_id = explode(",", $data['projectData']['technology_id']);
 
-        foreach ($techData as $techLanguage) {
-            ?>
+                                                    foreach ($techData as $techLanguage) {
+                                                        ?>
                                                         <option <?= in_array($techLanguage[0], $technology_id) ? 'selected' : '' ?> value="<?php echo $techLanguage[0] ?>"><?php echo $techLanguage[1] ?></option>
 
-                                                    <?php
+                                                        <?php
                                                     }
                                                 }
                                             }
@@ -218,7 +225,7 @@ foreach ($data as $result => $techData) {
             autoclose: true,
             format: 'yyyy-mm-dd'
         });
-        $('#multiselect').fastselect();
+
     });
 </script>
 
