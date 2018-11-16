@@ -9,11 +9,57 @@ class Project extends Controller {
         $this->model = new Model();
     }
 
-    public function addProject() {
-        $clientData = $this->model->getClientData();
-        $techData = $this->model->getTechnologyData();
-        if (isset($_POST['submit'])) {
+    public function addProject() 
+            {
+                $clientData = $this->model->getClientData();
+                $techData = $this->model->getTechnologyData();
+                if (isset($_POST['submit'])) {
 
+            if (empty($_POST["project_id"])) 
+            {
+                $pidErrormsg = '<span class="error"> Please enter project id</span>';
+                
+            } else if(!is_numeric($_POST["project_id"]))
+            {
+                $pidErrormsg = '<span class="error"> Please enter numeric project id</span>';
+            }
+            
+            if(empty($_POST['project_name']))
+            {
+                $pnErrorms = '<span class="error"> Please enter project name</span>';
+               
+            }
+           
+            if(empty($_POST['project_approach']))
+            {
+                $paErrorms = '<span class="error"> Please enter project approach</span>';
+                
+            }
+            if(empty($_POST['plan_status']))
+            {
+                $psErrorms = '<span class="error"> Please enter plan status</span>';
+                
+            }
+            if(empty($_POST['team_lead']))
+            {
+                $tlErrorms = '<span class="error"> Please enter team lead</span>';
+               
+            }
+             if(empty($_POST['project_manager']))
+            {
+                $pmErrorms = '<span class="error"> Please enter project manager</span>';
+                
+            }
+             if(empty($_POST['client_name']))
+            {
+                $cnErrorms = '<span class="error"> Please enter client name</span>';
+               
+            }
+            if(empty($project_technologies))
+            {
+                $ptErrorms = '<span class="error"> Please enter project technology</span>';
+                
+            }
             $project_technology = $_POST['technology'];
 
             $project_technologies = "";
@@ -22,39 +68,22 @@ class Project extends Controller {
                 $technologies[] = $project_technology;
                 $project_technologies = implode(',', $technologies);
             }
-            if (empty($_POST["project_id"])) {
-                echo 'hii';
-                die;
-                $error_msg = "please enter value";
-                $this->render('view/AddProject.;php', $error_msg);
-            }
-
+              $errorMsgvariable = array($pidErrormsg, $pnErrorms, $paErrorms, $psErrorms, $tlErrorms, $pmErrorms, $cnErrorms, $ptErrorms);
             $addProjectDetail = array($_POST['project_id'], $_POST['project_name'], $_POST['project_approach'], $_POST['plan_status'],
                 $_POST['project_flag'], $_POST['team_lead'], $_POST['project_manager'], $_POST['start_date'], $_POST['end_date'],
                 $_POST['project_quality'], $_POST['project_description'], $_POST['estimated_hours'], $_POST['project_status'], $_POST['client_name'], $project_technologies);
-//           $addProjectDetail = array('project_id' => $_POST['project_id'], 
-//                                      'project_name' => $_POST['project_name'],
-//                                      'project_approach' => $_POST['project_approach'], 
-//                                      'client_name' => $_POST['client_name'],
-//                                      'plan_status' => $_POST['plan_status'], 
-//                                      'project_flag'=> $_POST['project_flag'], 
-//                                      'team_lead'=> $_POST['team_lead'],
-//                                      'project_manager'=> $_POST['project_manager'], 
-//                                      'start_date'=> $_POST['start_date'], 
-//                                      'end_date'=> $_POST['end_date'], 
-//                                      'project_quality' =>  $_POST['project_quality'],
-//                                      'project_technologies' => $project_technologies, 
-//                                      'project_description' =>   $_POST['project_description'],
-//                                      'estimated_hours' => $_POST['estimated_hours']);
 
-            $this->model->addProjectDeatil($addProjectDetail);
-            $this->render('view/AddProject.php', array('clientData' => $clientData, 'techData' => $techData));
+            
+         $result =  $this->model->addProjectDeatil($addProjectDetail);
+       $this->render('view/AddProject.php', array('clientData' => $clientData, 'techData' => $techData, 'errorMsgVariable' => $errorMsgvariable));
         } else {
+
             $this->render('view/AddProject.php', array('clientData' => $clientData, 'techData' => $techData));
         }
     }
 
     public function viewProject() {
+        
         $viewAllProjects = $this->model->viewProjects();
         $this->render('view/viewProjects.php', $viewAllProjects);
     }
@@ -88,9 +117,7 @@ class Project extends Controller {
                 $_POST['plan_status'], $_POST['project_flag'], $_POST['team_lead'], $_POST['project_manager'],
                 $_POST['start_date'], $_POST['end_date'], $_POST['project_quality'], $_POST['project_description'],
                 $_POST['estimated_hours'], $_POST['project_status'], $_POST['client_name'], $project_technologies);
-            echo '<pre>';
-            print_r($addProjectDetail);
-            die;
+           
             $this->model->updateProjectData($addProjectDetail, $projectId);
         }
     }

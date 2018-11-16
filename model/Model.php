@@ -46,7 +46,10 @@ class Model extends dbconnect {
                 . "VALUES('$addProjectDetails[0]', '$addProjectDetails[1]', '$addProjectDetails[2]', '$addProjectDetails[3]', '$addProjectDetails[4]', '$addProjectDetails[5]', '$addProjectDetails[6]', '" . date('Y-m-d', strtotime($addProjectDetails[7])) . "', '" . date('Y-m-d', strtotime($addProjectDetails[8])) . "', '$addProjectDetails[9]', '$addProjectDetails[10]', '$addProjectDetails[11]', '$addProjectDetails[12]', '$addProjectDetails[13]', '$addProjectDetails[14]' )";
 
         
-        mysqli_query($this->conn->connect(), $sql);
+        if(mysqli_query($this->conn->connect(), $sql))
+        {
+            return "record inserted";
+        }
     }
 
     public function viewProjects() {
@@ -71,9 +74,7 @@ class Model extends dbconnect {
         $sql = "select * from project where Id = $projectId  ";
         $result = mysqli_query($this->conn->connect(), $sql);
         $project_record = mysqli_fetch_array($result);
-//        echo '<pre>';
-//        print_r($project_record);
-//        die;
+
         return $project_record;
     }
 

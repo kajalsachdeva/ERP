@@ -14,11 +14,11 @@ $(document).ready(function () {
 
     $("#form").validate({
         rules: {
-//            project_id: {
-//                required: true,
-//                number: true,
-//                maxlength: 9
-//            },
+            project_id: {
+                required: true,
+                number: true,
+                maxlength: 9
+            },
             project_approach: {
                 required: true
             },

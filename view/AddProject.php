@@ -34,18 +34,26 @@ include 'header.php';
                                     <div class="form-group">
                                         <label>Project ID</label>
                                         <input type="text" class="form-control my-colorpicker1" name="project_id" id ="project_id">
-                                            <?php echo $error_msg; ?>
+                                            <?php if(!empty($data['errorMsgVariable'][0]))
+                                            {
+                                                echo $data['errorMsgVariable'][0]; 
+                                            }?>
+                                            
 
                                     </div>
 
                                     <!-- /.form-group -->
                                     <div class="form-group">
                                         <label>Project Approach</label>
-                                        <select class="form-control select2"  style="width: 100%;" name="project_approach" id="project_approach">
+                                        <select class="form-control select2"  style="width: 100%;" name="project_approach" id="project_approach"> 
+                                            
                                             <option value="">--Select project approach--</option>
                                             <option value="Waterfall">Waterfall</option>
                                             <option value="Agile">Agile</option>
-                                        </select>
+                                        </select><?php if(!empty($data['errorMsgVariable'][2]))
+                                            {
+                                                echo $data['errorMsgVariable'][2]; 
+                                            }?>
                                     </div>
                                     <div class="form-group">
                                         <label>Plan Status</label>
@@ -53,7 +61,10 @@ include 'header.php';
                                             <option value="">--Please select plan status--</option>
                                             <option value="Approved">Approved</option>
                                             <option value="Unapproved">Unapproved</option>
-                                        </select>
+                                        </select><?php if(!empty($data['errorMsgVariable'][1]))
+                                            {
+                                                echo $data['errorMsgVariable'][1]; 
+                                            }?>
                                     </div>
                                     <div class="form-group">
                                         <label>Team Lead</label>
@@ -62,6 +73,10 @@ include 'header.php';
                                             <option value="Divya">Divya</option>
                                             <option value="Arif">Arif</option>
                                         </select>
+                                        <?php if(!empty($data['errorMsgVariable'][4]))
+                                            {
+                                                echo $data['errorMsgVariable'][4]; 
+                                            }?>
                                     </div>
                                     <div class="form-group">
                                         <label>Start Date</label>
@@ -115,6 +130,10 @@ include 'header.php';
                                     <div class="form-group">
                                         <label>Project Name</label>
                                         <input type="text" class="form-control my-colorpicker1" name="project_name" id="project_name">
+                                         <?php if(!empty($data['errorMsgVariable'][2]))
+                                            {
+                                                echo $data['errorMsgVariable'][2]; 
+                                            }?>
                                     </div>
                                     <!-- /.form-group -->
                                     <div class="form-group">
@@ -138,10 +157,15 @@ include 'header.php';
                                             }
                                             ?>
                                         </select>
+                                        <?php if(!empty($data['errorMsgVariable'][6]))
+                                            {
+                                                echo $data['errorMsgVariable'][6]; 
+                                            }?>
                                     </div>
                                     <div class="form-group">
                                         <label>Project flag</label>
                                         <select class="form-control select2" style="width: 100%;" name="project_flag">
+                                            <option value="">--Select project flag--</option>
                                             <option value="Smooth Ride">Smooth Ride</option>
                                             <option value="Danger Zone">Danger Zone</option>
                                             <option value="Critical Zone">Critical Zone</option>
@@ -155,6 +179,10 @@ include 'header.php';
                                             <option value="Divya">Divya</option>
                                             <option value="Rahul">Rahul</option>
                                         </select>
+                                         <?php if(!empty($data['errorMsgVariable'][5]))
+                                            {
+                                                echo $data['errorMsgVariable'][5]; 
+                                            }?>
                                     </div>
                                     <div class="form-group">
                                         <label>Expected End Date</label>
@@ -169,7 +197,7 @@ include 'header.php';
                                     </div>
                                     <div class="form-group">
                                         <label>Technology</label>
-                                        <select class="form-control select2" style="width: 100%;" id='multiselect' name= "technology[]" multiple="multiple" required="required">
+                                        <select class="form-control select2" style="width: 100%;" id='multiselect' name= "technology[]" multiple="multiple" >
                                             <?php
                                             foreach ($data as $result => $techData) {
 
@@ -183,6 +211,10 @@ include 'header.php';
                                             }
                                             ?>
                                         </select>
+                                         <?php if(!empty($data['errorMsgVariable'][7]))
+                                            {
+                                                echo $data['errorMsgVariable'][7]; 
+                                            }?>
                                     </div>
 
                                     <div class="form-group">
