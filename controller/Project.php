@@ -75,7 +75,13 @@ class Project extends Controller {
 
             
          $result =  $this->model->addProjectDeatil($addProjectDetail);
-       $this->render('view/AddProject.php', array('clientData' => $clientData, 'techData' => $techData, 'errorMsgVariable' => $errorMsgvariable));
+         if(!array_filter($addProjectDetail))
+         {
+              $this->render('view/AddProject.php', array('clientData' => $clientData, 'techData' => $techData, 'errorMsgVariable' => $errorMsgvariable));
+         }
+ else {
+             $this->redirect('Project/viewProject'. '?' . 'result=' . $result);
+         }
         } else {
 
             $this->render('view/AddProject.php', array('clientData' => $clientData, 'techData' => $techData));
@@ -83,9 +89,10 @@ class Project extends Controller {
     }
 
     public function viewProject() {
+        $recordInsertFlag = $_GET['result'];
         
         $viewAllProjects = $this->model->viewProjects();
-        $this->render('view/viewProjects.php', $viewAllProjects);
+        $this->render('view/viewProjects.php', array('viewallproject' => $viewAllProjects, 'result' => $recordInsertFlag));
     }
 
     public function deleteProjectRecord() {

@@ -48,7 +48,7 @@ class Model extends dbconnect {
         
         if(mysqli_query($this->conn->connect(), $sql))
         {
-            return "record inserted";
+            return 1;
         }
     }
 
