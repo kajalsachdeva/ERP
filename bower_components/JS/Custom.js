@@ -31,10 +31,10 @@ $(document).ready(function () {
             start_date: {
                 required: true,
             },
-            project_description: {
-                required: true,
-                nowhitespace: true
-            },
+//            project_description: {
+//                required: true,
+//                nowhitespace: true
+//            },
             project_quality: {
                 required: true
             },

@@ -12,7 +12,7 @@ include 'header.php';
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <form action="<?php echo BASE_URL . 'Project/editProject' . '?' . 'Id=' . $data['projectData'][0]; ?>" method="post" id="form">
+        <form action="<?php echo BASE_URL . 'Project/editProject' . '?' . 'Id=' . $data['projectData'][0]; ?>" method="post" id="form" enctype="multipart/form-data">
             <div class="content-wrapper">
     <!--            <section class="content-header">
                     <h3>
@@ -191,6 +191,11 @@ include 'header.php';
                                         <input type="text" class="form-control my-colorpicker1" name="estimated_hours" value="<?php echo $data['projectData']['estimated_hours']; ?>" >
 
                                     </div>
+                                   <div class="form-group">
+                                        <label>Upload Image</label>
+                                       <input type="file" name="image" id="image"><img src=<?php echo $data['projectData']['image']; ?> height="150" width="150">
+
+                                    </div> 
                                     <div class="box-footer">
                                         <p align="right">
                                             <button type="submit" name="submit">Submit</button></p>

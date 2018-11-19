@@ -12,7 +12,7 @@ include 'header.php';
 
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
-        <form action="<?php echo BASE_URL . 'Project/addProject' ?>" method="post" name="form" id="form">
+        <form action="<?php echo BASE_URL . 'Project/addProject' ?>" method="post" name="form" id="form" enctype="multipart/form-data">
             <div class="content-wrapper">
     <!--            <section class="content-header">
                     <h3>
@@ -113,11 +113,11 @@ include 'header.php';
                                         <label>Project Status</label>
                                         <select class="form-control select2" style="width: 100%;" name="project_status" id="project_status">
                                             <option value="">--select project status</option>
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
-                                            <option value="Delivered">Delivered</option>
-                                            <option value="Hold">Hold</option>
-                                            <option value="Closed">Closed</option>
+                                            <option value="1">Active</option>
+                                            <option value="2">Delivered</option>
+                                            <option value="3">Hold</option>
+                                            <option value="4">Closed</option>
+                                            <option value="5">Inactive</option>
 
                                         </select>
 
@@ -220,6 +220,11 @@ include 'header.php';
                                     <div class="form-group">
                                         <label>Estimated Hours</label>
                                         <input type="text" class="form-control my-colorpicker1" name="estimated_hours">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Upload Image</label>
+                                        <input type="file" name="image" id="image">
 
                                     </div>
                                     <div class="box-footer">

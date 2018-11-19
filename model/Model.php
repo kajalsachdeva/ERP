@@ -42,8 +42,8 @@ class Model extends dbconnect {
 
     public function addProjectDeatil($addProjectDetails) {
 
-        $sql = "INSERT INTO project (project_id, project_name, project_approach, plan_status, project_flag, team_lead, project_manager, start_date,end_date, project_quality, project_description, estimated_hours, project_status,  client_id, technology_id )"
-                . "VALUES('$addProjectDetails[0]', '$addProjectDetails[1]', '$addProjectDetails[2]', '$addProjectDetails[3]', '$addProjectDetails[4]', '$addProjectDetails[5]', '$addProjectDetails[6]', '" . date('Y-m-d', strtotime($addProjectDetails[7])) . "', '" . date('Y-m-d', strtotime($addProjectDetails[8])) . "', '$addProjectDetails[9]', '$addProjectDetails[10]', '$addProjectDetails[11]', '$addProjectDetails[12]', '$addProjectDetails[13]', '$addProjectDetails[14]' )";
+        $sql = "INSERT INTO project (project_id, project_name, project_approach, plan_status, project_flag, team_lead, project_manager, start_date,end_date, project_quality, project_description, estimated_hours, project_status,  client_id, technology_id, image )"
+                . "VALUES('$addProjectDetails[0]', '$addProjectDetails[1]', '$addProjectDetails[2]', '$addProjectDetails[3]', '$addProjectDetails[4]', '$addProjectDetails[5]', '$addProjectDetails[6]', '" . date('Y-m-d', strtotime($addProjectDetails[7])) . "', '" . date('Y-m-d', strtotime($addProjectDetails[8])) . "', '$addProjectDetails[9]', '$addProjectDetails[10]', '$addProjectDetails[11]', '$addProjectDetails[12]', '$addProjectDetails[13]', '$addProjectDetails[14]', '$addProjectDetails[15]' )";
 
         
         if(mysqli_query($this->conn->connect(), $sql))
@@ -55,10 +55,16 @@ class Model extends dbconnect {
     public function viewProjects() {
 
 
-        $sql = "SELECT pro.`Id`, pro.`project_id`, pro.`project_name`, pro.`team_lead`, customer.`client_name`, pro.`project_manager`, pro.`plan_status`, pro.`project_flag`, pro.`project_quality`,  pro.`project_status` 
+        $sql = "SELECT pro.`Id`, pro.`project_id`, pro.`project_name`, pro.`team_lead`, customer.`client_name`, pro.`project_manager`, pro.`plan_status`, pro.`project_flag`, pro.`project_quality`, (CASE  
+  WHEN pro.`project_status`='1' THEN 'Active'
+  WHEN pro.`project_status`='2' THEN 'Delivered'
+  WHEN pro.`project_status`='3' THEN 'Hold'
+  WHEN pro.`project_status`='4' THEN 'Closed'
+  WHEN pro.`project_status`='5' THEN 'Inactive'
+END) as pro_status
                 FROM `project`AS pro
                 INNER JOIN `client` AS customer
-                ON customer.`client_id` = pro.`client_id` ORDER BY Id DESC
+                ON customer.`client_id` = pro.`client_id` ORDER BY project_status ASC
                 ";
         $result = mysqli_query($this->conn->connect(), $sql);
         $projectData = mysqli_fetch_all($result);
@@ -80,14 +86,17 @@ class Model extends dbconnect {
 
     public function viewProjectDetail($projectId) {
 
-        $sql = "SELECT pro.project_name,pro.project_approach, (SELECT GROUP_CONCAT(tech.tech_name) AS technologies FROM technology as tech WHERE FIND_IN_SET(tech.tech_id, pro.technology_id)) AS `technologies` , pro.team_lead, customer.client_name, customer.client_email, customer.company_detail, customer.contact_number, pro.estimated_hours
+        $sql = "SELECT pro.project_name, pro.project_approach, (SELECT GROUP_CONCAT(tech.tech_name) AS technologies FROM technology as tech WHERE FIND_IN_SET(tech.tech_id, pro.technology_id)) AS `technologies` , pro.team_lead, customer.client_name, customer.client_email, customer.company_detail, customer.contact_number, pro.estimated_hours
 
         FROM `project` as pro 
         INNER JOIN `client` AS customer
         ON customer.`client_id` = pro.`client_id`
         where pro.project_id = $projectId";
+        
         $result = mysqli_query($this->conn->connect(), $sql);
+        
         $project_record_description = mysqli_fetch_array($result);
+        
         return $project_record_description;
     }
 public function updateProjectData($updatedProjectDetail, $projectId)
@@ -99,11 +108,12 @@ public function updateProjectData($updatedProjectDetail, $projectId)
            . "end_date = '$updatedProjectDetail[8]', project_quality = '$updatedProjectDetail[9]', "
            . "project_description = '$updatedProjectDetail[10]', estimated_hours = $updatedProjectDetail[11], "
            . "project_status = '$updatedProjectDetail[12]', client_id = '$updatedProjectDetail[13]', "
-           . "technology_id = '$updatedProjectDetail[14]'" 
+           . "technology_id = '$updatedProjectDetail[14]', image = '$updatedProjectDetail[15]'" 
           
            . "where Id ='$projectId'";
    
         $result = mysqli_query($this->conn->connect(), $sql);
+        
 }
     public function getRegiter($values) {
         $sql = "INSERT INTO users (fullname, email, password)VALUES('$values[0]', '$values[1]', '$values[2]')";
