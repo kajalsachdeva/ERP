@@ -86,12 +86,12 @@ END) as pro_status
 
     public function viewProjectDetail($projectId) {
 
-        $sql = "SELECT pro.project_name, pro.project_approach, (SELECT GROUP_CONCAT(tech.tech_name) AS technologies FROM technology as tech WHERE FIND_IN_SET(tech.tech_id, pro.technology_id)) AS `technologies` , pro.team_lead, customer.client_name, customer.client_email, customer.company_detail, customer.contact_number, pro.estimated_hours
+        $sql = "SELECT pro.project_name, pro.project_approach, (SELECT GROUP_CONCAT(tech.tech_name) AS technologies FROM technology as tech WHERE FIND_IN_SET(tech.tech_id, pro.technology_id)) AS `technologies` , pro.team_lead, customer.client_name, customer.client_email, customer.company_detail, customer.contact_number, pro.estimated_hours, pro.image
 
         FROM `project` as pro 
         INNER JOIN `client` AS customer
         ON customer.`client_id` = pro.`client_id`
-        where pro.project_id = $projectId";
+        where pro.Id = $projectId";
         
         $result = mysqli_query($this->conn->connect(), $sql);
         

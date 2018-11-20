@@ -64,6 +64,10 @@ include 'header.php';
                                                      <tr> 
                                                         <td>Estimated Hours</td>
                                                         <td><?php echo $data[8] ?></td></tr>
+                                                     <tr> 
+                                                        <td>Uploaded Image</td>
+                                                        <td><img src="<?php echo BASE_URL.$data[9]; ?>" height="150" width="150">
+</td></tr>
                                                     
                                                         
                                                         

@@ -193,7 +193,7 @@ include 'header.php';
                                     </div>
                                    <div class="form-group">
                                         <label>Upload Image</label>
-                                       <input type="file" name="image" id="image"><img src=<?php echo $data['projectData']['image']; ?> height="150" width="150">
+                                       <input type="file" name="image" id="image"><img src="<?php echo BASE_URL.$data['projectData']['image']; ?>" height="150" width="150">
 
                                     </div> 
                                     <div class="box-footer">
