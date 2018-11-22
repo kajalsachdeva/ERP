@@ -73,55 +73,11 @@ $(document).ready(function () {
             }
         }
     });
-//     $('form').submit(function () {
-//        var project_id = $('#project_id').val();
-//        var project_name = $('#project_name').val();
-//        var project_approach = $('#project_approach').val();
-//        var plan_status = $('#plan_status').val();
-//        var team_lead = $('#team_lead').val();
-//        var startdatepicker = $('#startdatepicker').val();
-//        var project_description = $('#project_description').val();
-//        var project_quality = $('#project_quality').val();
-//        var project_status = $('#project_status').val();
-//        $(".error").remove();
-//        if (project_id == "") {
-//            $('#project_id').after('<span class="error">This field is required</span>');
-//            return false;
-//        }
-//        if (project_name == "") {
-//            $('#project_name').after('<span class="error">This field is required</span>');
-//            return false;
-//        }
-//       if (project_approach == "") {
-//            $('#project_approach').after('<span class="error">This field is required</span>');
-//            return false;
-//        }
-//       if (plan_status == "") {
-//            $('#plan_status').after('<span class="error">This field is required</span>');
-//            return false;
-//        }
-//        if (team_lead == "") {
-//            $('#team_lead').after('<span class="error">This field is required</span>');
-//            return false;
-//        }
-//        if (startdatepicker == "") {
-//            $('#startdatepicker').after('<span class="error">This field is required</span>');
-//            return false;
-//        }
-//        if (project_description == "") {
-//            $('#project_description').after('<span class="error">This field is required</span>');
-//            return false;
-//        }
-//        if (project_quality == "") {
-//            $('#project_quality').after('<span class="error">This field is required</span>');
-//            return false;
-//        }
-//        if (project_status == "") {
-//            $('#project_status').after('<span class="error">This field is required</span>');
-//            return false;
-//        }
-//    });
-//    
 
-
+$('.fa fa-plus-square btn btn-primary').on('click', function(){
+   $('.box-body').append( $('#act').html() ); 
+   
+    // append -> object
+});
+  
 });

@@ -34,6 +34,7 @@ include 'header.php';
                                     <div class="form-group">
                                         <label>Project ID</label>
                                         <input type="text" class="form-control my-colorpicker1" name="project_id" id ="project_id">
+                                        <!--<div><i class="fa fa-plus-square btn btn-primary" aria-hidden="true"></i></div>-->
                                             <?php if(!empty($data['errorMsgVariable'][0]))
                                             {
                                                 echo $data['errorMsgVariable'][0]; 

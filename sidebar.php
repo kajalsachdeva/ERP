@@ -84,6 +84,7 @@
                             
                             <li><a href="<?php echo BASE_URL . 'Project/addProject' ?>"><i class="fa fa-circle-o"></i>Add Project</a></li>
                             <li><a href="<?php echo BASE_URL . 'Project/viewProject' ?>"><i class="fa fa-circle-o"></i> View Projects</a></li>
+                            <li><a href="<?php echo BASE_URL . 'Project/projectTask' ?>"><i class="fa fa-circle-o"></i> Add Project Task</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -133,3 +134,4 @@
               
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+

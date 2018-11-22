@@ -42,6 +42,7 @@ class Project extends Controller {
             if (empty($project_technologies)) {
                 $ptErrorms = '<span class="error"> Please enter project technology</span>';
             }
+            
             $project_technology = $_POST['technology'];
 
             $project_technologies = "";
@@ -172,5 +173,8 @@ class Project extends Controller {
 
         $this->render('view/ProjectDescription.php', $projectData);
     }
-
+ public function projectTask()
+ {
+     $this->render('view/ProjectTask.php','');
+ }
 }
