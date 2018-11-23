@@ -77,19 +77,11 @@ $(document).ready(function () {
 $("body").on("click", ".fa-plus-square", function(){
    $('.box-body').append( $('#act').html() ); 
    
-    // append -> object
 });
-//$('.fa-plus-square').on('click', function(){
-//   $('.box-body').append( $('#act').html() ); 
-//   
-//    // append -> object
-//});;
-//  $("body").on("click", ".fa-minus-square", function(){
-//   remove( $('#act').html() ); 
-//   
-//    // append -> object
-//});
-$(".fa-minus-square").click(function(){
-    $($('#act').html()).remove();
-});
+
+ $("body").on("click",".fa-minus-square",function(){
+       $(this).parents('.row').remove();
+      
+  });
+
 });

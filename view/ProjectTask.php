@@ -1,4 +1,5 @@
 
+
 <?php
 include 'header.php';
 ?>
@@ -14,7 +15,7 @@ include 'header.php';
     <body class="hold-transition skin-blue sidebar-mini">
        
             <div class="content-wrapper">
-                 <form action="<?php echo BASE_URL . 'Project/addProject' ?>" method="post" name="form" id="form" enctype="multipart/form-data">
+                 <form action="" method="post" name="form" id="form">
     <!--            <section class="content-header">
                     <h3>
                         Add Project
@@ -41,7 +42,7 @@ include 'header.php';
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="enddatepicker" name="end_date">
+                                            <input type="text" class="form-control pull-right" id="datepicker" name="date">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -50,15 +51,17 @@ include 'header.php';
                              <div class="row" id="action">
                                  <div class="col-xs-3">
                  <label>Project</label>
-                                        <select class="form-control select2" style="width: 100%;" name="project_quality" id="project_quality">
+                                        <select class="form-control select2" style="width: 100%;" name="project_list">
                                             <option value="">--project name--</option>
-                                           
-
+                                        <?php   foreach ($data as $result => $projectData) {?>
+                                            
+                                            <option value="<?php echo $projectData[0];?>"><?php echo $projectData[1]; ?></option>
+                                        <?php } ?>
                                         </select>
                 </div>
                 <div class="col-xs-4">
                   <label>Tasks</label>
-                                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="project_description" id="project_description"></textarea>
+                                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="project_task" id="project_task"></textarea>
                 </div>
                 <div class="col-xs-3">
                   <div class="bootstrap-timepicker">
@@ -66,7 +69,7 @@ include 'header.php';
                   <label>Time picker:</label>
 
                   <div class="input-group">
-                    <input type="time" class="form-control timepicker">
+                      <input type="time" class="form-control timepicker" name="time_picker">
 
                     <div class="input-group-addon">
                       <i class="fa fa-clock-o"></i>
@@ -107,7 +110,7 @@ include 'header.php';
 <script>
     $(function () {
         
-        $('#enddatepicker').datepicker({
+        $('#datepicker').datepicker({
             autoclose: true,
             format: 'yyyy-mm-dd'
 

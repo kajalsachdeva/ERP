@@ -45,9 +45,8 @@ class Model extends dbconnect {
         $sql = "INSERT INTO project (project_id, project_name, project_approach, plan_status, project_flag, team_lead, project_manager, start_date,end_date, project_quality, project_description, estimated_hours, project_status,  client_id, technology_id, image )"
                 . "VALUES('$addProjectDetails[0]', '$addProjectDetails[1]', '$addProjectDetails[2]', '$addProjectDetails[3]', '$addProjectDetails[4]', '$addProjectDetails[5]', '$addProjectDetails[6]', '" . date('Y-m-d', strtotime($addProjectDetails[7])) . "', '" . date('Y-m-d', strtotime($addProjectDetails[8])) . "', '$addProjectDetails[9]', '$addProjectDetails[10]', '$addProjectDetails[11]', '$addProjectDetails[12]', '$addProjectDetails[13]', '$addProjectDetails[14]', '$addProjectDetails[15]' )";
 
-        
-        if(mysqli_query($this->conn->connect(), $sql))
-        {
+
+        if (mysqli_query($this->conn->connect(), $sql)) {
             return 1;
         }
     }
@@ -92,29 +91,40 @@ END) as pro_status
         INNER JOIN `client` AS customer
         ON customer.`client_id` = pro.`client_id`
         where pro.Id = $projectId";
-        
+
         $result = mysqli_query($this->conn->connect(), $sql);
-        
+
         $project_record_description = mysqli_fetch_array($result);
-        
+
         return $project_record_description;
     }
-public function updateProjectData($updatedProjectDetail, $projectId)
-{
-   $sql = "UPDATE project SET 	project_id = '$updatedProjectDetail[0]', project_name = '$updatedProjectDetail[1]', "
-           . "project_approach = '$updatedProjectDetail[2]', plan_status = '$updatedProjectDetail[3]', "
-           . "project_flag = '$updatedProjectDetail[4]', team_lead = '$updatedProjectDetail[5]', "
-           . "project_manager = '$updatedProjectDetail[6]', start_date = $updatedProjectDetail[7], "
-           . "end_date = '$updatedProjectDetail[8]', project_quality = '$updatedProjectDetail[9]', "
-           . "project_description = '$updatedProjectDetail[10]', estimated_hours = $updatedProjectDetail[11], "
-           . "project_status = '$updatedProjectDetail[12]', client_id = '$updatedProjectDetail[13]', "
-           . "technology_id = '$updatedProjectDetail[14]', image = '$updatedProjectDetail[15]'" 
-          
-           . "where Id ='$projectId'";
-   
+
+    public function updateProjectData($updatedProjectDetail, $projectId) {
+        $sql = "UPDATE project SET 	project_id = '$updatedProjectDetail[0]', project_name = '$updatedProjectDetail[1]', "
+                . "project_approach = '$updatedProjectDetail[2]', plan_status = '$updatedProjectDetail[3]', "
+                . "project_flag = '$updatedProjectDetail[4]', team_lead = '$updatedProjectDetail[5]', "
+                . "project_manager = '$updatedProjectDetail[6]', start_date = $updatedProjectDetail[7], "
+                . "end_date = '$updatedProjectDetail[8]', project_quality = '$updatedProjectDetail[9]', "
+                . "project_description = '$updatedProjectDetail[10]', estimated_hours = $updatedProjectDetail[11], "
+                . "project_status = '$updatedProjectDetail[12]', client_id = '$updatedProjectDetail[13]', "
+                . "technology_id = '$updatedProjectDetail[14]', image = '$updatedProjectDetail[15]'"
+                . "where Id ='$projectId'";
+
         $result = mysqli_query($this->conn->connect(), $sql);
-        
-}
+    }
+
+//********************funtions of Project Task Module***********************
+    public function getProjectList() {
+        $sql = "select project_id, project_name from project";
+        $result = mysqli_query($this->conn->connect(), $sql);
+        $project_record = mysqli_fetch_all($result);
+
+        return $project_record;
+    }
+
+//**********************End of module funvtions*****************************
+
+
     public function getRegiter($values) {
         $sql = "INSERT INTO users (fullname, email, password)VALUES('$values[0]', '$values[1]', '$values[2]')";
         mysqli_query($this->conn->connect(), $sql);

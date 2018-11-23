@@ -42,7 +42,7 @@ class Project extends Controller {
             if (empty($project_technologies)) {
                 $ptErrorms = '<span class="error"> Please enter project technology</span>';
             }
-            
+
             $project_technology = $_POST['technology'];
 
             $project_technologies = "";
@@ -126,7 +126,7 @@ class Project extends Controller {
             }
             $uploadDir = 'uploads/';
             $filename = basename($_FILES["image"]["name"]);
-           if (isset($_FILES["image"]["name"]) && !empty($_FILES["image"]["name"])) {
+            if (isset($_FILES["image"]["name"]) && !empty($_FILES["image"]["name"])) {
 
                 echo "image deleted" . unlink($projectData['image']);
                 $target_path = $uploadDir . date('d_m_Y_H_i_s') . '_' . $filename;
@@ -173,8 +173,22 @@ class Project extends Controller {
 
         $this->render('view/ProjectDescription.php', $projectData);
     }
- public function projectTask()
- {
-     $this->render('view/ProjectTask.php','');
- }
+
+    public function projectTask() {
+        $projectName = $this->model->getProjectList();
+        if (isset($_POST['submit'])) {
+            $project_lists = $_POST['project_list'];
+            
+            $tasks = $_POST['project_task'];
+            $time  = $_POST['time_picker'];
+            $date = $_POST['date'];
+            $details = array($_POST['project_list'], $_POST['project_task'], $_POST['time_picker'], $_POST['date']);
+            echo '<pre>';
+            print_r($details);
+            die;
+        } else {
+            $this->render('view/ProjectTask.php', $projectName);
+        }
+    }
+
 }
